@@ -1,0 +1,27 @@
+{
+    "name": "My Cool Game",
+    "description": "",
+    "dependencies": {
+        "device": "*",
+        "My extension": "pub:96340-21966-47013-83581"
+    },
+    "files": [
+        "main.blocks",
+        "main.ts",
+        "README.md",
+        "assets.json",
+        "tilemap.g.jres",
+        "tilemap.g.ts"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "targetVersions": {
+        "target": "1.7.24",
+        "targetId": "arcade"
+    },
+    "supportedTargets": [
+        "arcade"
+    ],
+    "preferredEditor": "blocksprj"
+}
