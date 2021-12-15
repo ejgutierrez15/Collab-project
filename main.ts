@@ -1,4 +1,7 @@
-controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+namespace SpriteKind {
+    export const heroes = SpriteKind.create()
+}
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     projectile = sprites.createProjectileFromSprite(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -18,12 +21,19 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . 2 2 2 2 2 2 . . . . . 
         `, hero, 100, 0)
 })
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    villain.setVelocity(50, randint(0, 300))
-})
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Projectile, function (sprite, otherSprite) {
     projectile.destroy(effects.fire, 500)
     info.player2.changeLifeBy(-1)
+})
+sprites.onOverlap(SpriteKind.heroes, SpriteKind.Projectile, function (sprite, otherSprite) {
+    if (projectile2) {
+        projectile2.destroy(effects.fire, 500)
+        info.changeLifeBy(-1)
+    }
+    if (projectile3) {
+        projectile3.destroy(effects.fire, 500)
+        info.changeLifeBy(-1)
+    }
 })
 function doSomething (text: string) {
     pause(1000)
@@ -33,11 +43,14 @@ function doSomething (text: string) {
     pause(1000)
     villain.sayText("Get Out of my Way I need to collect this gold", 500, false)
     pause(1000)
-    hero.sayText("Not in my watch", 500, false)
+    hero.sayText("Not on my watch", 500, false)
+    pause(2000)
 }
 info.player2.onLifeZero(function () {
     game.over(true)
 })
+let projectile3: Sprite = null
+let projectile2: Sprite = null
 let projectile: Sprite = null
 let villain: Sprite = null
 let hero: Sprite = null
@@ -188,7 +201,7 @@ hero = sprites.create(img`
     ........................
     ........................
     ........................
-    `, SpriteKind.Player)
+    `, SpriteKind.heroes)
 hero.setPosition(16, 93)
 villain = sprites.create(img`
     ........................
@@ -217,14 +230,54 @@ villain = sprites.create(img`
     ........................
     `, SpriteKind.Enemy)
 villain.setPosition(125, 93)
+info.player1.setLife(5)
+info.player2.setLife(250)
+controller.moveSprite(hero, 100, 100)
 doSomething("abc")
-game.onUpdate(function () {
-    info.player1.setLife(5)
+game.onUpdateInterval(500, function () {
     if (info.player1.life() == 0) {
         game.over(false)
     }
-    info.player2.setLife(75)
 })
-game.onUpdate(function () {
-    controller.moveSprite(hero, 100, 100)
+game.onUpdateInterval(500, function () {
+    villain.setPosition(randint(50, 160), randint(0, 120))
+    if (info.player2.life() < 100) {
+        projectile2 = sprites.createProjectileFromSprite(img`
+            . . f f f . . . . . . . . f f f 
+            . f f c c . . . . . . f c b b c 
+            f f c c . . . . . . f c b b c . 
+            f c f c . . . . . . f b c c c . 
+            f f f c c . c c . f c b b c c . 
+            f f c 3 c c 3 c c f b c b b c . 
+            f f b 3 b c 3 b c f b c c b c . 
+            . c 1 b b b 1 b c b b c c c . . 
+            . c 1 b b b 1 b b c c c c . . . 
+            c b b b b b b b b b c c . . . . 
+            c b 1 f f 1 c b b b b f . . . . 
+            f f 1 f f 1 f b b b b f c . . . 
+            f f 2 2 2 2 f b b b b f c c . . 
+            . f 2 2 2 2 b b b b c f . . . . 
+            . . f b b b b b b c f . . . . . 
+            . . . f f f f f f f . . . . . . 
+            `, villain, -80, 0)
+    } else {
+        projectile3 = sprites.createProjectileFromSprite(img`
+            . . f f f . . . . . . . . f f f 
+            . f f c c . . . . . . f c b b c 
+            f f c c . . . . . . f c b b c . 
+            f c f c . . . . . . f b c c c . 
+            f f f c c . c c . f c b b c c . 
+            f f c 3 c c 3 c c f b c b b c . 
+            f f b 3 b c 3 b c f b c c b c . 
+            . c 1 b b b 1 b c b b c c c . . 
+            . c 1 b b b 1 b b c c c c . . . 
+            c b b b b b b b b b c c . . . . 
+            c b 1 f f 1 c b b b b f . . . . 
+            f f 1 f f 1 f b b b b f c . . . 
+            f f 2 2 2 2 f b b b b f c c . . 
+            . f 2 2 2 2 b b b b c f . . . . 
+            . . f b b b b b b c f . . . . . 
+            . . . f f f f f f f . . . . . . 
+            `, villain, -50, 0)
+    }
 })
