@@ -3,10 +3,14 @@ namespace SpriteKind {
     export const enemyprojectile = SpriteKind.create()
     export const fireball = SpriteKind.create()
 }
+function player_uno () {
+    return "" + name + "  " + name2
+}
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    hero.vy = -100
     jumpcounter += 1
-    if (jumpcounter <= 2) {
-        animation.stopAnimation(animation.AnimationTypes.All, hero)
+    if (jumpcounter < 2) {
+        pause(500)
         animation.runImageAnimation(
         hero,
         [img`
@@ -81,85 +85,12 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
         100,
         true
         )
-        jumpcounter = 0
+    }
+    if (jumpcounter > 2) {
+        jumpcounter = 1
     }
     if (jumpcounter == 2) {
-        pause(1000)
-        jumpcounter = 0
-        animation.runImageAnimation(
-        hero,
-        [img`
-            . . . . . . . . . . . . . . . . 
-            . . . . . f f f f f f . . . . . 
-            . . . f f e e e e f 2 f . . . . 
-            . . f f e e e e f 2 2 2 f . . . 
-            . . f e e e f f e e e e f . . . 
-            . . f f f f e e 2 2 2 2 e f . . 
-            . . f e 2 2 2 f f f f e 2 f . . 
-            . f f f f f f f e e e f f f . . 
-            . f f e 4 4 e b f 4 4 e e f . . 
-            . f e e 4 d 4 1 f d d e f . . . 
-            . . f e e e e e d d d f . . . . 
-            . . . . f 4 d d e 4 e f . . . . 
-            . . . . f e d d e 2 2 f . . . . 
-            . . . f f f e e f 5 5 f f . . . 
-            . . . f f f f f f f f f f . . . 
-            . . . . f f . . . f f f . . . . 
-            `,img`
-            . . . . . f f f f f f . . . . . 
-            . . . f f e e e e f 2 f . . . . 
-            . . f f e e e e f 2 2 2 f . . . 
-            . . f e e e f f e e e e f . . . 
-            . . f f f f e e 2 2 2 2 e f . . 
-            . . f e 2 2 2 f f f f e 2 f . . 
-            . f f f f f f f e e e f f f . . 
-            . f f e 4 4 e b f 4 4 e e f . . 
-            . f e e 4 d 4 1 f d d e f f . . 
-            . . f e e e 4 d d d d f d d f . 
-            . . . f f e e 4 e e e f b b f . 
-            . . . . f 2 2 2 4 d d e b b f . 
-            . . . . e 2 2 2 e d d e b f . . 
-            . . . . f 4 4 4 f e e f f . . . 
-            . . . . . f f f f f f . . . . . 
-            . . . . . . f f f . . . . . . . 
-            `,img`
-            . . . . . . . . . . . . . . . . 
-            . . . . . f f f f f f . . . . . 
-            . . . f f e e e e f 2 f . . . . 
-            . . f f e e e e f 2 2 2 f . . . 
-            . . f e e e f f e e e e f . . . 
-            . . f f f f e e 2 2 2 2 e f . . 
-            . . f e 2 2 2 f f f f e 2 f . . 
-            . f f f f f f f e e e f f f . . 
-            . f f e 4 4 e b f 4 4 e e f . . 
-            . f e e 4 d 4 1 f d d e f . . . 
-            . . f e e e e e d d d f . . . . 
-            . . . . f 4 d d e 4 e f . . . . 
-            . . . . f e d d e 2 2 f . . . . 
-            . . . f f f e e f 5 5 f f . . . 
-            . . . f f f f f f f f f f . . . 
-            . . . . f f . . . f f f . . . . 
-            `,img`
-            . . . . . . . . . . . . . . . . 
-            . . . . . f f f f f f . . . . . 
-            . . . f f e e e e f 2 f . . . . 
-            . . f f e e e e f 2 2 2 f . . . 
-            . . f e e e f f e e e e f . . . 
-            . . f f f f e e 2 2 2 2 e f . . 
-            . . f e 2 2 2 f f f f e 2 f . . 
-            . f f f f f f f e e e f f f . . 
-            . f f e 4 4 e b f 4 4 e e f . . 
-            . f e e 4 d 4 1 f d d e f f . . 
-            . . f e e e 4 d d d d f d d f . 
-            . . . . f e e 4 e e e f b b f . 
-            . . . . f 2 2 2 4 d d e b b f . 
-            . . . f f 4 4 4 e d d e b f . . 
-            . . . f f f f f f e e f f . . . 
-            . . . . f f . . . f f f . . . . 
-            `],
-        100,
-        true
-        )
+        jumpcounter = 1
     }
 })
 sprites.onOverlap(SpriteKind.heroes, SpriteKind.enemyprojectile, function (sprite, otherSprite) {
@@ -212,6 +143,8 @@ let bats: Sprite = null
 let jumpcounter = 0
 let villain: Sprite = null
 let hero: Sprite = null
+let name2 = ""
+let name = ""
 scene.setBackgroundImage(img`
     dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
     dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
@@ -335,6 +268,10 @@ scene.setBackgroundImage(img`
     4444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444
     `)
 tiles.setTilemap(tilemap`level1`)
+name = game.askForString("What is your first name Player?")
+name2 = game.askForString("What is your last name Player?")
+let player1 = player_uno()
+game.splash("Welcome " + player1)
 hero = sprites.create(img`
     ........................
     ......ffff..............
@@ -390,7 +327,7 @@ villain = sprites.create(img`
     `, SpriteKind.Enemy)
 villain.setPosition(125, 93)
 info.player1.setLife(5)
-info.player2.setLife(250)
+info.player2.setLife(75)
 controller.moveSprite(hero, 100, 0)
 hero.ay = 200
 animation.runImageAnimation(
@@ -523,15 +460,9 @@ villain,
 100,
 true
 )
-villain.setPosition(200, randint(0, 120))
-hero.vy = -100
+villain.setPosition(135, 93)
 doSomething("abc")
-game.onUpdateInterval(500, function () {
-    if (info.player1.life() == 0) {
-        game.over(false)
-    }
-})
-game.onUpdateInterval(500, function () {
+game.onUpdateInterval(5000, function () {
     bats = sprites.createProjectileFromSprite(img`
         . . f f f . . . . . . . . f f f 
         . f f c c . . . . . . f c b b c 
@@ -549,6 +480,12 @@ game.onUpdateInterval(500, function () {
         . f 2 2 2 2 b b b b c f . . . . 
         . . f b b b b b b c f . . . . . 
         . . . f f f f f f f . . . . . . 
-        `, villain, -50, 0)
+        `, villain, -20, 0)
     bats.setKind(SpriteKind.enemyprojectile)
+    villain.setPosition(155, randint(0, 120))
+})
+game.onUpdateInterval(500, function () {
+    if (info.player1.life() == 0) {
+        game.over(false)
+    }
 })
