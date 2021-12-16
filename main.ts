@@ -1,6 +1,172 @@
 namespace SpriteKind {
     export const heroes = SpriteKind.create()
+    export const enemyprojectile = SpriteKind.create()
+    export const fireball = SpriteKind.create()
 }
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    jumpcounter += 1
+    if (jumpcounter <= 2) {
+        animation.stopAnimation(animation.AnimationTypes.All, hero)
+        animation.runImageAnimation(
+        hero,
+        [img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . f f f f f f . . . . . 
+            . . . f f e e e e f 2 f . . . . 
+            . . f f e e e e f 2 2 2 f . . . 
+            . . f e e e f f e e e e f . . . 
+            . . f f f f e e 2 2 2 2 e f . . 
+            . . f e 2 2 2 f f f f e 2 f . . 
+            . f f f f f f f e e e f f f . . 
+            . f f e 4 4 e b f 4 4 e e f . . 
+            . f e e 4 d 4 1 f d d e f . . . 
+            . . f e e e e e d d d f . . . . 
+            . . . . f 4 d d e 4 e f . . . . 
+            . . . . f e d d e 2 2 f . . . . 
+            . . . f f f e e f 5 5 f f . . . 
+            . . . f f f f f f f f f f . . . 
+            . . . . f f . . . f f f . . . . 
+            `,img`
+            . . . . . f f f f f f . . . . . 
+            . . . f f e e e e f 2 f . . . . 
+            . . f f e e e e f 2 2 2 f . . . 
+            . . f e e e f f e e e e f . . . 
+            . . f f f f e e 2 2 2 2 e f . . 
+            . . f e 2 2 2 f f f f e 2 f . . 
+            . f f f f f f f e e e f f f . . 
+            . f f e 4 4 e b f 4 4 e e f . . 
+            . f e e 4 d 4 1 f d d e f f . . 
+            . . f e e e 4 d d d d f d d f . 
+            . . . f f e e 4 e e e f b b f . 
+            . . . . f 2 2 2 4 d d e b b f . 
+            . . . . e 2 2 2 e d d e b f . . 
+            . . . . f 4 4 4 f e e f f . . . 
+            . . . . . f f f f f f . . . . . 
+            . . . . . . f f f . . . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . f f f f f f . . . . . 
+            . . . f f e e e e f 2 f . . . . 
+            . . f f e e e e f 2 2 2 f . . . 
+            . . f e e e f f e e e e f . . . 
+            . . f f f f e e 2 2 2 2 e f . . 
+            . . f e 2 2 2 f f f f e 2 f . . 
+            . f f f f f f f e e e f f f . . 
+            . f f e 4 4 e b f 4 4 e e f . . 
+            . f e e 4 d 4 1 f d d e f . . . 
+            . . f e e e e e d d d f . . . . 
+            . . . . f 4 d d e 4 e f . . . . 
+            . . . . f e d d e 2 2 f . . . . 
+            . . . f f f e e f 5 5 f f . . . 
+            . . . f f f f f f f f f f . . . 
+            . . . . f f . . . f f f . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . f f f f f f . . . . . 
+            . . . f f e e e e f 2 f . . . . 
+            . . f f e e e e f 2 2 2 f . . . 
+            . . f e e e f f e e e e f . . . 
+            . . f f f f e e 2 2 2 2 e f . . 
+            . . f e 2 2 2 f f f f e 2 f . . 
+            . f f f f f f f e e e f f f . . 
+            . f f e 4 4 e b f 4 4 e e f . . 
+            . f e e 4 d 4 1 f d d e f f . . 
+            . . f e e e 4 d d d d f d d f . 
+            . . . . f e e 4 e e e f b b f . 
+            . . . . f 2 2 2 4 d d e b b f . 
+            . . . f f 4 4 4 e d d e b f . . 
+            . . . f f f f f f e e f f . . . 
+            . . . . f f . . . f f f . . . . 
+            `],
+        100,
+        true
+        )
+        jumpcounter = 0
+    }
+    if (jumpcounter == 2) {
+        pause(1000)
+        jumpcounter = 0
+        animation.runImageAnimation(
+        hero,
+        [img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . f f f f f f . . . . . 
+            . . . f f e e e e f 2 f . . . . 
+            . . f f e e e e f 2 2 2 f . . . 
+            . . f e e e f f e e e e f . . . 
+            . . f f f f e e 2 2 2 2 e f . . 
+            . . f e 2 2 2 f f f f e 2 f . . 
+            . f f f f f f f e e e f f f . . 
+            . f f e 4 4 e b f 4 4 e e f . . 
+            . f e e 4 d 4 1 f d d e f . . . 
+            . . f e e e e e d d d f . . . . 
+            . . . . f 4 d d e 4 e f . . . . 
+            . . . . f e d d e 2 2 f . . . . 
+            . . . f f f e e f 5 5 f f . . . 
+            . . . f f f f f f f f f f . . . 
+            . . . . f f . . . f f f . . . . 
+            `,img`
+            . . . . . f f f f f f . . . . . 
+            . . . f f e e e e f 2 f . . . . 
+            . . f f e e e e f 2 2 2 f . . . 
+            . . f e e e f f e e e e f . . . 
+            . . f f f f e e 2 2 2 2 e f . . 
+            . . f e 2 2 2 f f f f e 2 f . . 
+            . f f f f f f f e e e f f f . . 
+            . f f e 4 4 e b f 4 4 e e f . . 
+            . f e e 4 d 4 1 f d d e f f . . 
+            . . f e e e 4 d d d d f d d f . 
+            . . . f f e e 4 e e e f b b f . 
+            . . . . f 2 2 2 4 d d e b b f . 
+            . . . . e 2 2 2 e d d e b f . . 
+            . . . . f 4 4 4 f e e f f . . . 
+            . . . . . f f f f f f . . . . . 
+            . . . . . . f f f . . . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . f f f f f f . . . . . 
+            . . . f f e e e e f 2 f . . . . 
+            . . f f e e e e f 2 2 2 f . . . 
+            . . f e e e f f e e e e f . . . 
+            . . f f f f e e 2 2 2 2 e f . . 
+            . . f e 2 2 2 f f f f e 2 f . . 
+            . f f f f f f f e e e f f f . . 
+            . f f e 4 4 e b f 4 4 e e f . . 
+            . f e e 4 d 4 1 f d d e f . . . 
+            . . f e e e e e d d d f . . . . 
+            . . . . f 4 d d e 4 e f . . . . 
+            . . . . f e d d e 2 2 f . . . . 
+            . . . f f f e e f 5 5 f f . . . 
+            . . . f f f f f f f f f f . . . 
+            . . . . f f . . . f f f . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . f f f f f f . . . . . 
+            . . . f f e e e e f 2 f . . . . 
+            . . f f e e e e f 2 2 2 f . . . 
+            . . f e e e f f e e e e f . . . 
+            . . f f f f e e 2 2 2 2 e f . . 
+            . . f e 2 2 2 f f f f e 2 f . . 
+            . f f f f f f f e e e f f f . . 
+            . f f e 4 4 e b f 4 4 e e f . . 
+            . f e e 4 d 4 1 f d d e f f . . 
+            . . f e e e 4 d d d d f d d f . 
+            . . . . f e e 4 e e e f b b f . 
+            . . . . f 2 2 2 4 d d e b b f . 
+            . . . f f 4 4 4 e d d e b f . . 
+            . . . f f f f f f e e f f . . . 
+            . . . . f f . . . f f f . . . . 
+            `],
+        100,
+        true
+        )
+    }
+})
+sprites.onOverlap(SpriteKind.heroes, SpriteKind.enemyprojectile, function (sprite, otherSprite) {
+    bats.destroy(effects.fire, 500)
+    pause(200)
+    info.player1.changeLifeBy(-1)
+})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     projectile = sprites.createProjectileFromSprite(img`
         . . . . . . . . . . . . . . . . 
@@ -20,20 +186,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . 2 2 4 4 4 4 4 4 2 2 . . . 
         . . . . . 2 2 2 2 2 2 . . . . . 
         `, hero, 100, 0)
-})
-sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Projectile, function (sprite, otherSprite) {
-    projectile.destroy(effects.fire, 500)
-    info.player2.changeLifeBy(-1)
-})
-sprites.onOverlap(SpriteKind.heroes, SpriteKind.Projectile, function (sprite, otherSprite) {
-    if (projectile2) {
-        projectile2.destroy(effects.fire, 500)
-        info.changeLifeBy(-1)
-    }
-    if (projectile3) {
-        projectile3.destroy(effects.fire, 500)
-        info.changeLifeBy(-1)
-    }
+    projectile.setKind(SpriteKind.fireball)
 })
 function doSomething (text: string) {
     pause(1000)
@@ -49,9 +202,14 @@ function doSomething (text: string) {
 info.player2.onLifeZero(function () {
     game.over(true)
 })
-let projectile3: Sprite = null
-let projectile2: Sprite = null
+sprites.onOverlap(SpriteKind.Enemy, SpriteKind.fireball, function (sprite, otherSprite) {
+    projectile.destroy(effects.fire, 500)
+    pause(200)
+    info.player2.changeLifeBy(-1)
+})
 let projectile: Sprite = null
+let bats: Sprite = null
+let jumpcounter = 0
 let villain: Sprite = null
 let hero: Sprite = null
 scene.setBackgroundImage(img`
@@ -176,6 +334,7 @@ scene.setBackgroundImage(img`
     4444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444
     4444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444
     `)
+tiles.setTilemap(tilemap`level1`)
 hero = sprites.create(img`
     ........................
     ......ffff..............
@@ -232,7 +391,140 @@ villain = sprites.create(img`
 villain.setPosition(125, 93)
 info.player1.setLife(5)
 info.player2.setLife(250)
-controller.moveSprite(hero, 100, 100)
+controller.moveSprite(hero, 100, 0)
+hero.ay = 200
+animation.runImageAnimation(
+hero,
+[img`
+    . . . . . . f f f f f f . . . . 
+    . . . . f f e e e e f 2 f . . . 
+    . . . f f e e e e f 2 2 2 f . . 
+    . . . f e e e f f e e e e f . . 
+    . . . f f f f e e 2 2 2 2 e f . 
+    . . . f e 2 2 2 f f f f e 2 f . 
+    . . f f f f f f f e e e f f f . 
+    . . f f e 4 4 e b f 4 4 e e f . 
+    . . f e e 4 d 4 1 f d d e f . . 
+    . . . f e e e 4 d d d d f . . . 
+    . . . . f f e e 4 4 4 e f . . . 
+    . . . . . 4 d d e 2 2 2 f . . . 
+    . . . . . e d d e 2 2 2 f . . . 
+    . . . . . f e e f 4 5 5 f . . . 
+    . . . . . . f f f f f f . . . . 
+    . . . . . . . f f f . . . . . . 
+    `,img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . f f f f f f . . . . 
+    . . . . f f e e e e f 2 f . . . 
+    . . . f f e e e e f 2 2 2 f . . 
+    . . . f e e e f f e e e e f . . 
+    . . . f f f f e e 2 2 2 2 e f . 
+    . . . f e 2 2 2 f f f f e 2 f . 
+    . . f f f f f f f e e e f f f . 
+    . . f f e 4 4 e b f 4 4 e e f . 
+    . . f e e 4 d 4 1 f d d e f . . 
+    . . . f e e e e e d d d f . . . 
+    . . . . . f 4 d d e 4 e f . . . 
+    . . . . . f e d d e 2 2 f . . . 
+    . . . . f f f e e f 5 5 f f . . 
+    . . . . f f f f f f f f f f . . 
+    . . . . . f f . . . f f f . . . 
+    `,img`
+    . . . . . . f f f f f f . . . . 
+    . . . . f f e e e e f 2 f . . . 
+    . . . f f e e e e f 2 2 2 f . . 
+    . . . f e e e f f e e e e f . . 
+    . . . f f f f e e 2 2 2 2 e f . 
+    . . . f e 2 2 2 f f f f e 2 f . 
+    . . f f f f f f f e e e f f f . 
+    . . f f e 4 4 e b f 4 4 e e f . 
+    . . f e e 4 d 4 1 f d d e f . . 
+    . . . f e e e 4 d d d d f . . . 
+    . . . . f f e e 4 4 4 e f . . . 
+    . . . . . 4 d d e 2 2 2 f . . . 
+    . . . . . e d d e 2 2 2 f . . . 
+    . . . . . f e e f 4 5 5 f . . . 
+    . . . . . . f f f f f f . . . . 
+    . . . . . . . f f f . . . . . . 
+    `,img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . f f f f f f . . . . 
+    . . . . f f e e e e f 2 f . . . 
+    . . . f f e e e e f 2 2 2 f . . 
+    . . . f e e e f f e e e e f . . 
+    . . . f f f f e e 2 2 2 2 e f . 
+    . . . f e 2 2 2 f f f f e 2 f . 
+    . . f f f f f f f e e e f f f . 
+    . . f f e 4 4 e b f 4 4 e e f . 
+    . . f e e 4 d 4 1 f d d e f . . 
+    . . . f e e e 4 d d d d f . . . 
+    . . . . 4 d d e 4 4 4 e f . . . 
+    . . . . e d d e 2 2 2 2 f . . . 
+    . . . . f e e f 4 4 5 5 f f . . 
+    . . . . f f f f f f f f f f . . 
+    . . . . . f f . . . f f f . . . 
+    `],
+100,
+true
+)
+animation.runImageAnimation(
+villain,
+[img`
+    ........................
+    ........................
+    ........................
+    ........................
+    ..........ffff..........
+    ........ff1111ff........
+    .......fb111111bf.......
+    .......f1111111df.......
+    ......fd1111111ddf......
+    ......fd111111dddf......
+    ......fd111ddddddf......
+    ......fd1dfbddddbf......
+    ......fbddfcdbbbcf......
+    .......f11111bbcf.......
+    .......f1b1fffff........
+    .......fbfc111bf........
+    ........ff1b1bff........
+    .........fbfbfff.f......
+    ..........ffffffff......
+    ............fffff.......
+    ........................
+    ........................
+    ........................
+    ........................
+    `,img`
+    ........................
+    ........................
+    ........................
+    ........................
+    .........fffff..........
+    ........f11111ff........
+    .......fb111111bf.......
+    .......f1111111dbf......
+    ......fd111111dddf......
+    ......fd11111ddddf......
+    ......fd11dddddddf......
+    ......f111dddddddf......
+    ......f11fcddddddf......
+    .....fb1111bdddbf.......
+    .....f1b1bdfcfff........
+    .....fbfbffffffff.......
+    ......fffffffffff.ff....
+    ...........ffffffff.....
+    ........f1b1bffffff.....
+    ........fbfbffffff......
+    ........................
+    ........................
+    ........................
+    ........................
+    `],
+100,
+true
+)
+villain.setPosition(200, randint(0, 120))
+hero.vy = -100
 doSomething("abc")
 game.onUpdateInterval(500, function () {
     if (info.player1.life() == 0) {
@@ -240,44 +532,23 @@ game.onUpdateInterval(500, function () {
     }
 })
 game.onUpdateInterval(500, function () {
-    villain.setPosition(randint(50, 160), randint(0, 120))
-    if (info.player2.life() < 100) {
-        projectile2 = sprites.createProjectileFromSprite(img`
-            . . f f f . . . . . . . . f f f 
-            . f f c c . . . . . . f c b b c 
-            f f c c . . . . . . f c b b c . 
-            f c f c . . . . . . f b c c c . 
-            f f f c c . c c . f c b b c c . 
-            f f c 3 c c 3 c c f b c b b c . 
-            f f b 3 b c 3 b c f b c c b c . 
-            . c 1 b b b 1 b c b b c c c . . 
-            . c 1 b b b 1 b b c c c c . . . 
-            c b b b b b b b b b c c . . . . 
-            c b 1 f f 1 c b b b b f . . . . 
-            f f 1 f f 1 f b b b b f c . . . 
-            f f 2 2 2 2 f b b b b f c c . . 
-            . f 2 2 2 2 b b b b c f . . . . 
-            . . f b b b b b b c f . . . . . 
-            . . . f f f f f f f . . . . . . 
-            `, villain, -80, 0)
-    } else {
-        projectile3 = sprites.createProjectileFromSprite(img`
-            . . f f f . . . . . . . . f f f 
-            . f f c c . . . . . . f c b b c 
-            f f c c . . . . . . f c b b c . 
-            f c f c . . . . . . f b c c c . 
-            f f f c c . c c . f c b b c c . 
-            f f c 3 c c 3 c c f b c b b c . 
-            f f b 3 b c 3 b c f b c c b c . 
-            . c 1 b b b 1 b c b b c c c . . 
-            . c 1 b b b 1 b b c c c c . . . 
-            c b b b b b b b b b c c . . . . 
-            c b 1 f f 1 c b b b b f . . . . 
-            f f 1 f f 1 f b b b b f c . . . 
-            f f 2 2 2 2 f b b b b f c c . . 
-            . f 2 2 2 2 b b b b c f . . . . 
-            . . f b b b b b b c f . . . . . 
-            . . . f f f f f f f . . . . . . 
-            `, villain, -50, 0)
-    }
+    bats = sprites.createProjectileFromSprite(img`
+        . . f f f . . . . . . . . f f f 
+        . f f c c . . . . . . f c b b c 
+        f f c c . . . . . . f c b b c . 
+        f c f c . . . . . . f b c c c . 
+        f f f c c . c c . f c b b c c . 
+        f f c 3 c c 3 c c f b c b b c . 
+        f f b 3 b c 3 b c f b c c b c . 
+        . c 1 b b b 1 b c b b c c c . . 
+        . c 1 b b b 1 b b c c c c . . . 
+        c b b b b b b b b b c c . . . . 
+        c b 1 f f 1 c b b b b f . . . . 
+        f f 1 f f 1 f b b b b f c . . . 
+        f f 2 2 2 2 f b b b b f c c . . 
+        . f 2 2 2 2 b b b b c f . . . . 
+        . . f b b b b b b c f . . . . . 
+        . . . f f f f f f f . . . . . . 
+        `, villain, -50, 0)
+    bats.setKind(SpriteKind.enemyprojectile)
 })
